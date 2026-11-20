@@ -14,13 +14,6 @@
     .score { font-weight: 800; font-size: 1.15rem; }
     button { border: 1px solid #70ff8f88; border-radius: 10px; background: #15251f; color: #dfffea; padding: 9px 13px; font-weight: 800; cursor: pointer; }
     canvas { width: 100%; aspect-ratio: 1; display: block; background: #080d12; border: 3px solid #70ff8f; border-radius: 14px; box-shadow: 0 0 35px #34cc6355; image-rendering: pixelated; }
-    .controls { display: grid; grid-template-columns: repeat(3, 64px); justify-content: center; gap: 7px; margin-top: 14px; }
-    .controls button { height: 54px; font-size: 1.25rem; }
-    .controls button:first-child { grid-column: 2; }
-    .controls button:nth-child(2) { grid-column: 1; }
-    .controls button:nth-child(3), .controls button:nth-child(4) { grid-row: 2; }
-    .controls button:nth-child(3) { grid-column: 2; }
-    .controls button:nth-child(4) { grid-column: 3; }
   </style>
 </head>
 <body>
@@ -30,13 +23,7 @@
       <div class="score">Punkte: <span id="score">0</span></div>
       <button id="restart" type="button">Neu starten</button>
     </div>
-    <canvas id="game" width="480" height="480" aria-label="Snake-Spiel"></canvas>
-    <div class="controls" aria-label="Steuerung">
-      <button data-dir="up" aria-label="Nach oben">▲</button>
-      <button data-dir="left" aria-label="Nach links">◀</button>
-      <button data-dir="down" aria-label="Nach unten">▼</button>
-      <button data-dir="right" aria-label="Nach rechts">▶</button>
-    </div>
+    <canvas id="game" width="480" height="480" tabindex="0" aria-label="Snake-Spiel. Steuerung mit den vier Pfeiltasten."></canvas>
   </main>
   <script>
     const canvas = document.querySelector('#game');
@@ -55,6 +42,7 @@
       placeFood();
       clearInterval(timer);
       timer = setInterval(tick, 110);
+      canvas.focus();
     }
 
     function placeFood() {
@@ -102,16 +90,16 @@
       }
     }
 
+    const keyMap = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
     window.addEventListener('keydown', e => {
-      const map = {ArrowUp:'up', w:'up', ArrowDown:'down', s:'down', ArrowLeft:'left', a:'left', ArrowRight:'right', d:'right'};
-      if (map[e.key] || map[e.key.toLowerCase?.()]) { e.prevent.preventDefault?.(); setDirection(map[e.key] || map[e.key.toLowerCase()]); }
+      const directionName = keyMap[e.key];
+      if (directionName) {
+        e.preventDefault();
+        setDirection(directionName);
+      }
     });
-    document.querySelectorAll('[data-dir]').forEach(button => button.addEventListener('click', () => setDirection(button.dataset.dir)));
-    document.querySelector('#restart').addEventListener('click', reset);
 
-    let touchStart;
-    canvas.addEventListener('touchstart', e => { touchStart = e.touches[0]; }, {passive:true});
-    canvas.addEventListener('touchend', e => { if (!touchStart) return; const dx=e.changedTouches[0].clientX-touchStart.clientX; const dy=e.changedTouches[0].clientY-touchStart.clientY; if (Math.max(Math.abs(dx),Math.abs(dy)) > 24) setDirection(Math.abs(dx)>Math.abs(dy) ? (dx>0?'right':'left') : (dy>0?'down':'up')); touchStart=null; }, {passive:true});
+    document.querySelector('#restart').addEventListener('click', reset);
     reset();
   </script>
 </body>
