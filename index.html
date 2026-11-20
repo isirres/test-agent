@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b8f34a">
+  <meta name="description" content="Eine knallbunte Frosch-Party im Web!">
+  <title>Crazy Frog Party!</title>
+  <style>
+    :root { color-scheme: dark; --lime: #c8ff43; --pink: #ff4db8; --blue: #45ddff; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden; color: #fff;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: radial-gradient(ellipse at 50% 30%, #5424a3 0, #21104d 42%, #09051b 100%);
+      display: grid; place-items: center; padding: 28px;
+    }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .35;
+      background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 45px 45px; }
+    main { position: relative; width: min(100%, 950px); text-align: center; padding: clamp(24px, 5vw, 56px);
+      border: 2px solid #ffffff30; border-radius: 32px; background: #120b2dbb;
+      box-shadow: 0 0 70px #a53bff38, inset 0 0 40px #ff4db80d; }
+    .badge { display: inline-block; padding: 8px 14px; border: 1px solid #c8ff4370; border-radius: 999px;
+      color: var(--lime); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 18px 0 8px; font-size: clamp(2.8rem, 9vw, 6.7rem); line-height: .9; font-weight: 1000;
+      letter-spacing: -.07em; text-transform: uppercase; text-shadow: 0 5px 0 #7b2cba, 0 0 35px #ff4db888; }
+    h1 span { color: var(--lime); }
+    p { margin: 14px auto 24px; max-width: 560px; color: #e6dafd; font-size: clamp(1rem, 2.5vw, 1.2rem); }
+    .frog-wrap { width: min(100%, 390px); margin: 14px auto 18px; filter: drop-shadow(0 18px 28px #0008); animation: bob 2.8s ease-in-out infinite; }
+    svg { display: block; width: 100%; height: auto; }
+    .notes { position: absolute; inset: 34% 10% auto; display: flex; justify-content: space-between; pointer-events: none; }
+    .note { color: var(--blue); font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; animation: dance 1.2s ease-in-out infinite alternate; }
+    .note:last-child { color: var(--pink); animation-delay: .5s; }
+    button { border: 0; border-radius: 999px; padding: 15px 25px; background: var(--lime); color: #20103b;
+      font: inherit; font-weight: 900; cursor: pointer; box-shadow: 0 5px 0 #80a923, 0 0 24px #c8ff4350; transition: transform .15s, box-shadow .15s; }
+    button:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 8px 0 #80a923, 0 0 34px #c8ff4380; }
+    button:active { transform: translateY(2px); box-shadow: 0 2px 0 #80a923; }
+    #party-message { min-height: 1.5em; margin: 15px 0 0; color: var(--lime); font-weight: 700; }
+    footer { margin-top: 24px; color: #b7a9d2; font-size: .8rem; }
+    @keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+    @keyframes dance { to { transform: translateY(-25px) rotate(18deg) scale(1.15); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="badge">♪ Party-Modus: aktiviert ♪</div>
+    <h1>Crazy <span>Frog</span><br>Party!</h1>
+    <p>Mach dich bereit für Hüpfen, Glitzer und jede Menge Frosch-Energie. Drück den Knopf und bring die Party zum Hüpfen!</p>
+    <div class="notes" aria-hidden="true"><span class="note">♫</span><span class="note">♪</span></div>
+    <div class="frog-wrap">
+      <!-- Eigene, einfache Frosch-Illustration statt eines fremden Figurenbildes -->
+      <svg viewBox="0 0 400 350" role="img" aria-labelledby="frog-title frog-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="frog-title">Ein grüner Partyfrosch mit Fliegerbrille</title>
+        <desc id="frog-desc">Eine fröhliche, selbst gezeichnete Froschillustration mit großen Augen, blauer Fliegerbrille und breitem Grinsen.</desc>
+        <defs>
+          <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3ff62"/><stop offset="1" stop-color="#64d92d"/></linearGradient>
+          <linearGradient id="lens" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8ff6ff" stop-opacity=".9"/><stop offset="1" stop-color="#1689df" stop-opacity=".88"/></linearGradient>
+        </defs>
+        <!-- Kopf und Wangen -->
+        <ellipse cx="200" cy="195" rx="151" ry="125" fill="url(#skin)" stroke="#328e29" stroke-width="8"/>
+        <ellipse cx="100" cy="91" rx="47" ry="52" fill="url(#skin)" stroke="#328e29" stroke-width="8"/>
+        <ellipse cx="300" cy="91" rx="47" ry="52" fill="url(#skin)" stroke="#328e29" stroke-width="8"/>
+        <ellipse cx="106" cy="88" rx="23" ry="29" fill="#fff"/><ellipse cx="294" cy="88" rx="23" ry="29" fill="#fff"/>
+        <ellipse cx="111" cy="92" rx="10" ry="15" fill="#272047"/><ellipse cx="289" cy="92" rx="10" ry="15" fill="#272047"/>
+        <!-- Fliegerbrille -->
+        <path d="M56 116 Q200 93 344 116 L333 163 Q323 184 278 179 L238 163 L162 163 L122 179 Q77 184 67 163Z" fill="#322450" stroke="#17112c" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M69 121 Q111 112 151 119 L142 155 Q137 166 105 165 Q81 162 76 150Z" fill="url(#lens)" stroke="#f7ffba" stroke-width="5"/>
+        <path d="M249 119 Q289 112 331 121 L324 150 Q319 162 295 165 Q263 166 258 155Z" fill="url(#lens)" stroke="#f7ffba" stroke-width="5"/>
+        <path d="M151 127 Q200 116 249 127 L240 145 Q200 137 160 145Z" fill="#ff4db8" stroke="#17112c" stroke-width="6"/>
+        <path d="M91 125l28-5M272 124l28-5" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+        <!-- Grinsen -->
+        <path d="M103 211 Q200 285 297 211 Q286 303 200 307 Q114 303 103 211Z" fill="#fff4da" stroke="#328e29" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M126 232 Q200 249 274 232" fill="none" stroke="#ff70a9" stroke-width="8" stroke-linecap="round"/>
+        <path d="M169 257v27M200 261v31M231 257v27" stroke="#b6e986" stroke-width="5"/>
+        <ellipse cx="75" cy="203" rx="16" ry="9" fill="#ff8e9e" opacity=".75"/><ellipse cx="325" cy="203" rx="16" ry="9" fill="#ff8e9e" opacity=".75"/>
+        <!-- Halskette -->
+        <path d="M112 299 Q200 345 288 299" fill="none" stroke="#ff4db8" stroke-width="9" stroke-linecap="round"/>
+        <path d="m200 323 18 18-18 17-18-17z" fill="#c8ff43" stroke="#fff" stroke-width="4"/>
+      </svg>
+    </div>
+    <button id="party-button" type="button">Frosch-Party starten! 🐸</button>
+    <div id="party-message" role="status" aria-live="polite"></div>
+    <footer>Eine kleine, selbst gestaltete Frosch-Fan-Seite · Keine Musik wird automatisch abgespielt</footer>
+  </main>
+  <script>
+    const button = document.querySelector('#party-button');
+    const message = document.querySelector('#party-message');
+    const lines = ['Ribbit! Die Tanzfläche gehört dir! 🐸', 'Hüpf, hüpf, hurra! ✨', 'Frosch-Energie auf 100 %! 💚', 'Zeit für einen kleinen Luftsprung! 🎶'];
+    button.addEventListener('click', () => {
+      message.textContent = lines[Math.floor(Math.random() * lines.length)];
+      document.querySelector('main').animate([{ transform: 'scale(1)' }, { transform: 'scale(1.015) rotate(.3deg)' }, { transform: 'scale(1)' }], { duration: 360 });
+    });
+  </script>
+</body>
+</html>
